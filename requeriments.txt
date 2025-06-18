@@ -1,7 +1,0 @@
-sklearn
-joblib
-numpy
-pandas
-kagglehub
-streamlit
-matplotlib

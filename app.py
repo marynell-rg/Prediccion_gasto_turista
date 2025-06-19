@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from entrenamiento import LogTransformer, scaler
 
 # --- Título principal ---
 st.title("💰 Predicción del Gasto Medio por Turista")

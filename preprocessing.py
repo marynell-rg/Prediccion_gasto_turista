@@ -18,7 +18,7 @@ from transformer import LogTransformer
 data = pd.read_csv('data_tourism_final.csv')
 
 # Columnas a transformar con logaritmo
-cols_log = ['tourism_arrivals_log', 'tourism_expenditures_log', 'gdp_log', 'unemployment_log']
+cols_log = ['tourism_arrivals', 'tourism_expenditures', 'gdp', 'unemployment']
 
 # Columnas a escalar
 cols_to_scale = cols_log

@@ -6,41 +6,37 @@ import joblib
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.metrics import mean_squared_error, r2_score
-from sklearn.base import BaseEstimator, TransformerMixin
 from joblib import dump
 from transformer import LogTransformer
 
 
 # Cargamos archivo .csv desde el workspace
-data = pd.read_csv('data_tourism_final.csv')
+data = pd.read_csv('data_tourism_crudo.csv')
 
 # Columnas a transformar con logaritmo
-cols_log = ['tourism_arrivals', 'tourism_expenditures', 'gdp', 'unemployment']
+cols_log = ['tourism_arrivals', 'tourism_expenditures', 'gdp']
 
 # Columnas a escalar
-cols_to_scale = cols_log
+cols_to_scale = ['tourism_arrivals', 'tourism_expenditures', 'gdp', 'inflation', 'unemployment']
 
 #Separamos el DF en X e y
 y = data['tourism_expenditures_mean']
 X = data.drop(columns=['tourism_expenditures_mean'])
 
-# Escalado
-scaler = ColumnTransformer(
-    transformers=[
-        ('scale', MinMaxScaler(), cols_to_scale)
-    ],
-    remainder='passthrough'
-)
-
-# Creamos el pipeline
-pipeline = Pipeline([
+# Pipeline del preprocesamiento
+preprocessing_pipeline = Pipeline([
     ('log_transform', LogTransformer(cols_to_transform=cols_log)),
-    ('scale_features', scaler)
+    ('scaler', ColumnTransformer([
+        ('scale', MinMaxScaler(), cols_to_scale)
+    ], remainder='passthrough'))
 ])
 
+
+# Entrenamos el preprocesamiento
+X_transformed = preprocessing_pipeline.fit_transform(X)
+
 # Guardamos el preprocesamiento
-joblib.dump(pipeline, 'preprocessing.joblib')
+joblib.dump(preprocessing_pipeline, 'preprocessing.joblib')
 print("Preprocesador guardado como: 'preprocessing.joblib'")

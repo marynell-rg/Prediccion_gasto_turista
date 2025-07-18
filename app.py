@@ -7,7 +7,7 @@ st.set_page_config(page_title="Predicción Gasto Turístico", layout="centered")
 
 # --- Título ---
 st.title("Predicción del Gasto Medio por Turista")
-st.markdown("Esta aplicación estima el **gasto medio por turista** a partir de datos económicos y el país de destino.")
+st.markdown("Esta aplicación estima el **Gasto medio por Turista** a partir de datos económicos y el país de destino.")
 
 # --- Cargar código de países ---
 @st.cache_data
@@ -29,6 +29,7 @@ tourism_expenditures = st.number_input("Gasto total turístico (USD)", min_value
 tourism_arrivals = st.number_input("Número de turistas", min_value=0.0, value=0.0, step=100.0)
 pib = st.number_input("PIB del país (USD millones)", min_value=0.0, value=0.0, step=100.0)
 desempleo = st.number_input("Desempleo (%)", value=0.0, step=0.1)
+inflacion = st.number_input("Inflación (%)", value=0.0, step=0.1)
 pais = st.selectbox("País", list(codigos_paises.keys()))
 anno = st.slider("Año", min_value=2025, max_value=2035, value=2025)
 
@@ -39,17 +40,18 @@ codigo_pais = codigos_paises[pais]
 input_data = pd.DataFrame([{
             'code_num': codigo_pais,
             'year': anno,
-            'tourism_arrivals_log': tourism_arrivals,
-            'tourism_expenditures_log': tourism_expenditures,
-            'gdp_log': pib,
-            'unemployment_log': desempleo
+            'tourism_arrivals': tourism_arrivals,
+            'tourism_expenditures': tourism_expenditures,
+            'gdp': pib,
+            'inflation': inflacion,
+            'unemployment': desempleo
         }])
 
  # Hacer predicción
 if st.button("Predecir gasto medio"):
     try:
         prediccion = modelo.predict(input_data)[0]
-        st.success(f"Gasto medio estimado por turista: **${prediccion:,.2f} USD**")
+        st.success(f"Gasto medio estimado por turista: **${prediccion:,.10f} USD**")
 
     except Exception as e:
         st.error(f"Error al predecir: {e}")

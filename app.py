@@ -25,11 +25,11 @@ modelo = cargar_modelo()
 
 # --- Inputs del usuario ---
 st.header("Introduce los datos:")
-tourism_expenditures = st.number_input("Gasto total turístico (USD)", min_value=0.0, value=0.0, step=1000.0)
-tourism_arrivals = st.number_input("Número de turistas", min_value=0.0, value=0.0, step=100.0)
-pib = st.number_input("PIB del país (USD millones)", min_value=0.0, value=0.0, step=100.0)
-desempleo = st.number_input("Desempleo (%)", value=0.0, step=0.1)
-inflacion = st.number_input("Inflación (%)", value=0.0, step=0.1)
+tourism_expenditures = st.number_input("Gasto total turístico (USD millones)", min_value=0.15, value=0.15, step=1.0)
+tourism_arrivals = st.number_input("Número de turistas", min_value=900.0, value=900.0, step=1000.0)
+pib = st.number_input("PIB del país (USD millones)", min_value=1.0, value=1.0, step=1000000.0)
+desempleo = st.number_input("Desempleo (%)", value=0.039, step=0.1)
+inflacion = st.number_input("Inflación (%)", min_value=-17.0, value=0.0, step=1.0)
 pais = st.selectbox("País", list(codigos_paises.keys()))
 anno = st.slider("Año", min_value=2025, max_value=2035, value=2025)
 
@@ -50,7 +50,7 @@ input_data = pd.DataFrame([{
  # Hacer predicción
 if st.button("Predecir gasto medio"):
     try:
-        prediccion = modelo.predict(input_data)[0]
+        prediccion = (modelo.predict(input_data)[0])*(10**5)
         st.success(f"Gasto medio estimado por turista: **${prediccion:,.10f} USD**")
 
     except Exception as e:

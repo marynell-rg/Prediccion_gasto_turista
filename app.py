@@ -51,7 +51,7 @@ input_data = pd.DataFrame([{
 if st.button("Predecir gasto medio"):
     try:
         prediccion = (modelo.predict(input_data)[0])*(10**5)
-        st.success(f"Gasto medio estimado por turista: **${prediccion:,.10f} USD**")
+        st.success(f"Gasto medio estimado por turista: **${prediccion:,.2f} USD**")
 
     except Exception as e:
         st.error(f"Error al predecir: {e}")

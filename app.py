@@ -12,7 +12,7 @@ st.markdown("Esta aplicación estima el **Gasto medio por Turista** a partir de 
 # --- Cargar código de países ---
 @st.cache_data
 def cargar_codigos_paises():
-    df = pd.read_csv("country_codes_num.csv")
+    df = pd.read_csv("data/country_codes_num.csv")
     return dict(zip(df["country"], df["code_num"]))
 
 @st.cache_resource

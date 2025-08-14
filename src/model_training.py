@@ -1,17 +1,19 @@
 # Importamos las librerías a utilizar
-import numpy as np
 import pandas as pd
 import joblib
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import GradientBoostingRegressor
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
 from pathlib import Path
+from src.transformer import LogTransformer
 
-# Definimos la ruta del archivo CSV y cargamos los datos
+# Definimos las rutas base
 BASE_DIR = Path(__file__).resolve().parent.parent
-csv_path = BASE_DIR / 'data' / 'data_tourism_crudo.csv'
-data = pd.read_csv(csv_path)
+DATA_PATH = BASE_DIR / 'data' / 'data_tourism_crudo.csv'
+PREPROCESSING_PATH = BASE_DIR / 'preprocessing' / 'preprocessing.joblib'
+MODEL_PATH = BASE_DIR / 'model' / 'modelo_turismo.joblib'
+
+# Cargamos los datos
+data = pd.read_csv(DATA_PATH)
 
 # Separar el DF en X e y
 y = data['tourism_expenditures_mean']
@@ -30,7 +32,7 @@ for col in cols_log:
         raise ValueError(f"La columna '{col}' contiene valores negativos. No se puede aplicar log1p.")
 
 # Preprocesamiento
-preprocessing = joblib.load('preprocessing.joblib')
+preprocessing = joblib.load(PREPROCESSING_PATH)
 
 # Creamos el pipeline con el preprocesamiento y el modelo
 pipeline = Pipeline([
@@ -41,6 +43,8 @@ pipeline = Pipeline([
 # Entrenar el pipeline
 pipeline.fit(X, y)
 
-# Guardadamos nuestro modelo entrenado
-joblib.dump(pipeline, "modelo_turismo.joblib")
-print("Modelo entrenado y guardado como 'modelo_turismo.joblib'")
+# Guardamos nuestro modelo entrenado
+MODEL_PATH.parent.mkdir(parents=True, exist_ok=True)
+joblib.dump(pipeline, MODEL_PATH)
+
+print(f"Modelo entrenado y guardado en: {MODEL_PATH}")

@@ -1,5 +1,5 @@
 env/
-_pycache_
+__pycache__/
 test.py
 ver_columnas_modelo.py
 test2.py

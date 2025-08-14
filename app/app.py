@@ -38,7 +38,7 @@ Esta aplicación permite **predecir el gasto medio por turista** a partir de dat
 """)
 
 # --- Imagen profesional ---
-st.image("assets/turismo.jpg", caption="Turismo y economía", use_container_width=True)
+st.image("assets/turismo.jpg", caption="Turismo y economía", width=700)
 
 # --- Título ---
 st.title("Predicción del Gasto Medio por Turista")

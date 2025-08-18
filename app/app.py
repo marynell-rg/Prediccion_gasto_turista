@@ -113,25 +113,47 @@ if st.button("Predecir gasto medio (2025-2031)"):
         predicciones = (modelo.predict(df_futuro)) * (10**5)
         df_futuro["Predicción"] = predicciones
 
-        # Crear gráfica con Plotly
+        # --- Crear colores personalizados según la predicción ---
+        def asignar_color(valor):
+            if valor <= 0:
+                return "red"       # cero o menor
+            elif 0 < valor <= 20:
+                return "yellow"    # entre 0 y 20
+            else:
+                return "blue"      # mayor que 20
+
+        df_futuro["Color"] = df_futuro["Predicción"].apply(asignar_color)
+
+        # Crear gráfica con Plotly usando colores dinámicos
         fig = px.bar(
             df_futuro,
             x="year",
             y="Predicción",
             text="Predicción",
             labels={"year": "Año", "Predicción": "Gasto Medio (USD)"},
-            title=f"Proyección del Gasto Medio por Turista en {pais} (2026-2031)",
-            color="Predicción",
-            color_continuous_scale="Blues"
+            title=f"Proyección del Gasto Medio por Turista en {pais} (2025-2031)",
+            color="Color",
+            color_discrete_map={"red": "red", "yellow": "yellow", "blue": "blue"}
         )
         fig.update_traces(
             texttemplate='%{text:,.2f}',
-            textposition='outside',
-            marker_color="#3F2998"
+            textposition='outside'
         )
 
+        fig.update_layout(showlegend=False)
+        
         # Mostrar gráfica
         st.plotly_chart(fig, use_container_width=True)
+
+# --- Mensaje final según la última predicción ---
+        ultima_prediccion = df_futuro.iloc[-1]["Predicción"]
+        if ultima_prediccion <= 0:
+            st.error("🔴 Mala opción: la proyección indica un gasto medio nulo o negativo.")
+        elif 0 < ultima_prediccion <= 20:
+            st.warning("🟡 Opción de cuidado: el gasto medio proyectado es bajo, requiere precaución.")
+        else:
+            st.info("🔵 Buena opción: el gasto medio proyectado es alto, puede ser atractivo.")
+
 
     except Exception as e:
         st.error(f"Error al predecir: {e}")

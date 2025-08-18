@@ -44,6 +44,10 @@ st.image("assets/turismo.jpg", caption="Turismo y economía", width=700)
 st.title("Predicción del Gasto Medio por Turista")
 st.markdown("Esta aplicación estima el **Gasto medio por Turista** a partir de datos económicos y el país de destino.")
 
+# Desde donde esta leyendo los datos
+print("BASE_DIR:", BASE_DIR)
+print("CSV path:", BASE_DIR / "data" / "country_codes_num.csv")
+
 # --- Cargar código de países ---
 @st.cache_data
 def cargar_codigos_paises():

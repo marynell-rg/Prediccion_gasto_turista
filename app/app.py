@@ -75,7 +75,7 @@ pib = st.number_input("PIB del país (USD millones)", min_value=1.0, value=1.0, 
 desempleo = st.number_input("Desempleo (%)", value=0.039, step=0.1)
 inflacion = st.number_input("Inflación (%)", min_value=-17.0, value=0.0, step=1.0)
 pais = st.selectbox("País", list(codigos_paises.keys()))
-anno = st.slider("Año", min_value=2025, max_value=2035, value=2025)
+anno = st.selectbox("Año", [2025, 2026, 2027, 2028, 2029, 2030, 2031])
 
 # --- Convertir datos ---
 codigo_pais = codigos_paises[pais]
@@ -83,7 +83,7 @@ codigo_pais = codigos_paises[pais]
 # Crear input DataFrame
 input_data = pd.DataFrame([{
             'code_num': codigo_pais,
-            'year': anno,
+            'year': 2025,  # Año actual
             'tourism_arrivals': tourism_arrivals,
             'tourism_expenditures': tourism_expenditures,
             'gdp': pib,
@@ -91,33 +91,48 @@ input_data = pd.DataFrame([{
             'unemployment': desempleo
         }])
 
- # Hacer predicción
-if st.button("Predecir gasto medio"):
+# Hacer predicción
+if st.button("Predecir gasto medio (2025-2031)"):
     try:
-        prediccion = (modelo.predict(input_data)[0])*(10**5)
-        st.success(f"Gasto medio estimado por turista: **${prediccion:,.2f} USD/día**")
+        # Generar dataframe para próximos 5 años
+        futuros = []
+        for year in range(2025, 2032):  # 2025 hasta 2031 inclusive
+            futuros.append({
+                'code_num': codigo_pais,
+                'year': year,
+                'tourism_arrivals': tourism_arrivals,
+                'tourism_expenditures': tourism_expenditures,
+                'gdp': pib,
+                'inflation': inflacion,
+                'unemployment': desempleo
+            })
 
-        df_grafica = pd.DataFrame({
-        "Año": [anno],
-        "Gasto_Medio_Predicho": [prediccion]
-        })
+        df_futuro = pd.DataFrame(futuros)
 
-        # Graficar usando Plotly
+        # Hacer predicciones
+        predicciones = (modelo.predict(df_futuro)) * (10**5)
+        df_futuro["Predicción"] = predicciones
+
+        # Crear gráfica con Plotly
         fig = px.bar(
-              df_grafica,
-              x="Año",
-              y="Gasto_Medio_Predicho",
-              text="Gasto_Medio_Predicho",
-              labels={"Gasto_Medio_Predicho": "Gasto Medio (USD)"},
-              title="Predicción del Gasto Medio por Turista",
-              color='Gasto_Medio_Predicho',
-              color_continuous_scale='Greens'
-            )
-        fig.update_traces(marker_color="#537B45", texttemplate='%{text:,.2f}', textposition='outside')
+            df_futuro,
+            x="year",
+            y="Predicción",
+            text="Predicción",
+            labels={"year": "Año", "Predicción": "Gasto Medio (USD)"},
+            title=f"Proyección del Gasto Medio por Turista en {pais} (2026-2031)",
+            color="Predicción",
+            color_continuous_scale="Blues"
+        )
+        fig.update_traces(
+            texttemplate='%{text:,.2f}',
+            textposition='outside',
+            marker_color="#3F2998"
+        )
 
-        # Mostrar la gráfica
+        # Mostrar gráfica
         st.plotly_chart(fig, use_container_width=True)
 
     except Exception as e:
         st.error(f"Error al predecir: {e}")
-        st.write("Datos enviados al modelo:", input_data)
+        st.write("Datos enviados al modelo:", df_futuro)

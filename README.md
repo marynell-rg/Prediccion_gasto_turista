@@ -4,4 +4,4 @@ Código de Machine Learning para predecir el gasto medio de turistas
 
 URL de la app
 
-https://predicciondegastomediodeturistas.streamlit.app/
+https://gastomediodeturistas.streamlit.app/

@@ -38,14 +38,17 @@ El modelo permite proyectar la evolución del gasto medio hasta el año **2031**
    cd prediccion_gasto_turista
 
 2. Crear entorno virtual
+   ```bash
    python -m venv env
    source env/bin/activate   # En Linux/Mac
    env\Scripts\activate      # En Windows
 
 3. Instalar dependencias
+   ```bash
    pip install -r requirements.txt
 
 4. Ejecutar la app
+   ```bash
    streamlit run app/app.py
 
 ## Uso
@@ -78,3 +81,36 @@ prediccion_gasto_turista/
 │   └── turismo.jpg
 │── requirements.txt
 │── README.md   
+
+## Tecnologías utilizadas
+- joblib==1.5.1
+- numpy==2.3.0
+- pandas==2.3.0
+- python-dateutil==2.9.0.post0
+- pytz==2025.2
+- scikit-learn==1.7.0
+- scipy==1.15.3
+- six==1.17.0
+- threadpoolctl==3.6.0
+- tzdata==2025.2
+- streamlit>=1.26.0
+- rich>=10.14.0
+- kagglehub
+- plotly
+
+## Contribución
+¡Las contribuciones son bienvenidas!
+
+Si deseas colaborar:
+1. Haz un fork del proyecto.
+2. Crea una rama con tu mejora: git checkout -b feature/nueva-funcionalidad.
+3. Haz commit de los cambios: git commit -m 'Añadir nueva funcionalidad'.
+4. Haz push a la rama: git push origin feature/nueva-funcionalidad.
+5. Abre un Pull Request.
+
+## Licencia
+```markdown
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+## Autoría
+Proyecto desarrollado por [Marynell Romero] como parte de un ejercicio de predicción y visualización de turismo y economía.

@@ -58,45 +58,46 @@ El modelo permite proyectar la evolución del gasto medio hasta el año **2031**
 4. Obtendrás una gráfica de barras con la proyección para los próximos 5 años.  
 
 ## Estructura del proyecto
-```markdown
-prediccion_gasto_turista/
-│── app/
-│   └── app.py
-│── data/
-│   ├── country_codes_num.csv
-│   ├── data_tourism_crudo.csv
-│   └── original_data.py
-│── model/
-│   └── modelo_turismo.joblib
-│── notebooks/
-│   ├── Estimacion_de_gasto_medio_por_turista_v1.ipynb
-│   └──Estimacion_de_gasto_medio_por_turista.ipynb
-│── preprocessing/
-│   └── preprocessing.joblib
-│── src/
-│   ├── model_training.py
-│   ├── preprocessing.py
-│   └── transformer.py
-│── assets/
-│   └── turismo.jpg
-│── requirements.txt
-│── README.md   
+   ```bash
+   prediccion_gasto_turista/
+   │── app/
+   │   └── app.py
+   │── data/
+   │   ├── country_codes_num.csv
+   │   ├── data_tourism_crudo.csv
+   │   └── original_data.py
+   │── model/
+   │   └── modelo_turismo.joblib
+   │── notebooks/
+   │   ├── Estimacion_de_gasto_medio_por_turista_v1.ipynb
+   │   └──Estimacion_de_gasto_medio_por_turista.ipynb
+   │── preprocessing/
+   │   └── preprocessing.joblib
+   │── src/
+   │   ├── model_training.py
+   │   ├── preprocessing.py
+   │   └── transformer.py
+   │── assets/
+   │   └── turismo.jpg
+   │── requirements.txt
+   │── README.md   
 
 ## Tecnologías utilizadas
-- joblib==1.5.1
-- numpy==2.3.0
-- pandas==2.3.0
-- python-dateutil==2.9.0.post0
-- pytz==2025.2
-- scikit-learn==1.7.0
-- scipy==1.15.3
-- six==1.17.0
-- threadpoolctl==3.6.0
-- tzdata==2025.2
-- streamlit>=1.26.0
-- rich>=10.14.0
-- kagglehub
-- plotly
+   ```bash
+   - joblib==1.5.1
+   - numpy==2.3.0
+   - pandas==2.3.0
+   - python-dateutil==2.9.0.post0
+   - pytz==2025.2
+   - scikit-learn==1.7.0
+   - scipy==1.15.3
+   - six==1.17.0
+   - threadpoolctl==3.6.0
+   - tzdata==2025.2
+   - streamlit>=1.26.0
+   - rich>=10.14.0
+   - kagglehub
+   - plotly
 
 ## Contribución
 ¡Las contribuciones son bienvenidas!
@@ -109,7 +110,7 @@ Si deseas colaborar:
 5. Abre un Pull Request.
 
 ## Licencia
-```markdown
+```bash
 Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 ## Autoría

@@ -1,6 +1,6 @@
 ## Predicción de gasto de turistas Españoles en Mundo ##
 
-Esta aplicación predice el gasto medio por turista en distintos países del mundo, usando variables económicas (PIB, inflación, desempleo, gasto turístico, etc.) y un modelo de Machine Learning.
+Esta aplicación predice el gasto medio por turista en distintos países del mundo, usando variables económicas (PIB, inflación, desempleo, etc.) y un modelo de Machine Learning.
 
 [![Streamlit App](https://img.shields.io/badge/🚀%20Streamlit-Live_App-FF4B4B?logo=streamlit)](https://gastomediodeturistas.streamlit.app/)
 [![Python](https://img.shields.io/badge/Python-3.11-blue.svg?logo=python)](https://www.python.org/)
@@ -19,9 +19,9 @@ Esta aplicación predice el gasto medio por turista en distintos países del mun
 ## Descripción
 Este proyecto es una **aplicación interactiva en Streamlit** que predice el **gasto medio por turista** en distintos países, en base a datos económicos y turísticos como:
 
-- PIB del país
-- Número de turistas
 - Gasto total turístico
+- Número de turistas
+- PIB del país
 - Inflación
 - Desempleo
 
@@ -40,8 +40,8 @@ El modelo permite proyectar la evolución del gasto medio hasta el año **2031**
 2. Crear entorno virtual
    ```bash
    python -m venv env
-   source env/bin/activate   # En Linux/Mac
-   env\Scripts\activate      # En Windows
+   source env/bin/activate        # En Linux/Mac
+   .env\Scripts\Activate.ps1      # En Windows
 
 3. Instalar dependencias
    ```bash
@@ -52,7 +52,7 @@ El modelo permite proyectar la evolución del gasto medio hasta el año **2031**
    streamlit run app/app.py
 
 ## Uso
-1. Introduce valores de **PIB, inflación, desempleo, gasto turístico y número de turistas**.  
+1. Introduce valores de **gasto turístico, número de turistas, PIB, inflación y desempleo**.  
 2. Selecciona un país y un año.  
 3. Haz clic en **"Predecir gasto medio"**.  
 4. Obtendrás una gráfica de barras con la proyección para los próximos 5 años.  
@@ -81,6 +81,7 @@ El modelo permite proyectar la evolución del gasto medio hasta el año **2031**
    │   └── turismo.jpg
    │── requirements.txt
    │── README.md   
+   ```
 
 ## Tecnologías utilizadas
    ```bash
@@ -98,6 +99,7 @@ El modelo permite proyectar la evolución del gasto medio hasta el año **2031**
    - rich>=10.14.0
    - kagglehub
    - plotly
+   ```
 
 ## Contribución
 ¡Las contribuciones son bienvenidas!

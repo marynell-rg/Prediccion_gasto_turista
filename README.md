@@ -118,4 +118,4 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE)
 ```
 
 ## Autoría
-Proyecto desarrollado por [Marynell Romero] como parte de un ejercicio de predicción y visualización de la relación entre turismo y economía.
+Proyecto desarrollado por **Marynell Romero** como parte de un ejercicio de predicción y visualización de la relación entre turismo y economía.

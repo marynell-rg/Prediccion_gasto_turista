@@ -14,7 +14,8 @@ Esta aplicación predice el gasto medio por turista en distintos países del mun
 - [Estructura del proyecto](#-estructura-del-proyecto)
 - [Tecnologías utilizadas](#-tecnologías-utilizadas)
 - [Contribución](#-contribución)
-- [Licencia](#-licencia).
+- [Licencia](#-licencia)
+- [Autoría](#-autoria)
 
 ## Descripción
 Este proyecto es una **aplicación interactiva en Streamlit** que predice el **gasto medio por turista** en distintos países, en base a datos económicos y turísticos como:
@@ -114,6 +115,7 @@ Si deseas colaborar:
 ## Licencia
 ```bash
 Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+```
 
 ## Autoría
-Proyecto desarrollado por [Marynell Romero] como parte de un ejercicio de predicción y visualización de turismo y economía.
+Proyecto desarrollado por [Marynell Romero] como parte de un ejercicio de predicción y visualización de la relación entre turismo y economía.

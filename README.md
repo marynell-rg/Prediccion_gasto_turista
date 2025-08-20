@@ -8,7 +8,7 @@ Esta aplicación predice el gasto medio por turista en distintos países del mun
 
 ## Índice 
 - [Descripción](#descripción) 
-- [Demo en línea](#demo-en-linea)
+- [Demo en línea](#demo-en-línea)
 - [Instalación local](#instalación-local)
 - [Uso](#uso)
 - [Estructura del proyecto](#estructura-del-proyecto)

@@ -113,9 +113,7 @@ Si deseas colaborar:
 5. Abre un Pull Request.
 
 ## Licencia
-```bash
 Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
-```
 
 ## Autoría
 Proyecto desarrollado por **Marynell Romero** como parte de un ejercicio de predicción y visualización de la relación entre turismo y economía.
